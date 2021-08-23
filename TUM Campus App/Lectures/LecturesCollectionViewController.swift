@@ -6,6 +6,7 @@
 //  Copyright © 2020 TUM. All rights reserved.
 //
 
+import SwiftUI
 import UIKit
 import CoreData
 import XMLCoder
@@ -32,10 +33,16 @@ final class LecturesCollectionViewController: UICollectionViewController, Profil
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let childView = UIHostingController(rootView: LecturesView())
+        addChild(childView)
+        childView.view.frame = self.view.frame
+        view.addSubview(childView.view)
+        childView.didMove(toParent: self)
+        
         navigationController?.navigationBar.prefersLargeTitles = true
-        setupTableView()
-        setupDataSource()
-        loadProfileImage()
+//        setupTableView()
+//        setupDataSource()
+//        loadProfileImage()
         title = "Lectures".localized
     }
 
